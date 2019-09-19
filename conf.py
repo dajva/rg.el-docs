@@ -16,6 +16,10 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 
+def get_version():
+    os.chdir("..")
+    return os.popen('cask version').read()
+
 # -- Project information -----------------------------------------------------
 
 project = u'rg.el'
@@ -25,7 +29,7 @@ author = u'David Landell'
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'1.8.0'
+release = get_version()
 
 # -- General configuration ---------------------------------------------------
 

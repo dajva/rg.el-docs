@@ -1,4 +1,4 @@
-    :Author: david
+    :Author: Travis CI User
 
 .. contents::
 
