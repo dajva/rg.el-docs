@@ -17,7 +17,6 @@ from sphinx.util.nodes import make_refnode
 class ELispMarkup(ObjectDescription):
     def add_target_and_index(self, name, sig, signode):
         targetname = self.objtype + '-' + name
-        print targetname
         if targetname not in self.state.document.ids:
             signode['names'].append(targetname)
             signode['ids'].append(targetname)
@@ -50,7 +49,6 @@ class ELispFunction(ELispMarkup):
         name, args = sig.split(" ", 1)
 
         params = addnodes.desc_parameterlist()
-        print params
         if args:
             params += addnodes.desc_name(name, name + " ")
         else:
