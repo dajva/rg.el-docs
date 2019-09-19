@@ -25,7 +25,7 @@ author = u'David Landell'
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = 1.8.0
+release = u'1.8.0'
 
 # -- General configuration ---------------------------------------------------
 
