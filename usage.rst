@@ -258,7 +258,7 @@ command to the menu when defining the command via the
     (rg-define-search rg-word
       :format literal
       :flags ("--word-regexp")
-      :menu ("f" "w" "Word"))
+      :menu ("Custom" "w" "Word"))
 
 The ``:menu`` keyword in the above invocation will trigger insertion
 of a new menu item bound to key ``w`` with description **Word**. The
