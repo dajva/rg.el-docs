@@ -262,8 +262,8 @@ command to the menu when defining the command via the
 
 The ``:menu`` keyword in the above invocation will trigger insertion
 of a new menu item bound to key ``w`` with description **Word**. The
-new menu item will appear after the command currently bound to ``f``
-in the menu.
+new menu item will be put under the **Custom** group. This group is
+not available in the original menu so it will be created.
 
 The menu can be triggered from the :ref:`results buffer <results_buffer>` with the ``m`` key.
 The commands in the menu differs, depending on from where it's
