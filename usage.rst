@@ -66,7 +66,7 @@ during startup. Use a setup similar to this instead:
 .. code-block:: elisp
 
     (global-set-key (kbd "C-c s") #'rg-menu)
-    (with-eval-after load 'rg
+    (with-eval-after-load 'rg
        ;; Your settings goes here.
     )
 
@@ -88,7 +88,7 @@ is needed to achieve lazy loading:
     		    (listify-key-sequence key-vec))))))
 
     (global-set-key (kbd "C-c s") #'rg-autoload-keymap)
-    (with-eval-after load 'rg
+    (with-eval-after-load 'rg
        ;; Your settings goes here.
     )
 
