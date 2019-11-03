@@ -58,6 +58,39 @@ met. For this version these are:
 to defer loading if you have autoloading setup. That usually comes
 out of the box with ``package-install``.
 
+.. rubric:: Lazy loading
+
+For lazy loading you don't want to call directly into the package
+during startup. Use a setup similar to this instead:
+
+.. code-block:: elisp
+
+    (global-set-key (kbd "C-c s") #'rg-menu)
+    (with-eval-after load 'rg
+       ;; Your settings goes here.
+    )
+
+If you don't want to use the transient menu interface, the following
+is needed to achieve lazy loading:
+
+.. code-block:: elisp
+
+    ;; Workaround for emacs' lack of autoloaded keymaps.
+    ;; This is essentially what use-package do.
+    (defun rg-autoload-keymap ()
+      (interactive)
+      (if (not (require 'rg nil t))
+          (user-error (format "Cannot load rg"))
+        (let ((key-vec (this-command-keys-vector)))
+          (global-set-key key-vec rg-global-map)
+          (setq unread-command-events
+    	    (mapcar (lambda (ev) (cons t ev))
+    		    (listify-key-sequence key-vec))))))
+
+    (global-set-key (kbd "C-c s") #'rg-autoload-keymap)
+    (with-eval-after load 'rg
+       ;; Your settings goes here.
+    )
 
 .. rubric:: wgrep
 

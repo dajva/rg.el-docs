@@ -67,7 +67,7 @@ Customization is done via the Emacs customization system. The group
    that returns a list of flags.
 
 .. option:: rg-group-result
-   :default: nil
+   :default: t
    
    
    Controls the layout of the results buffer. If non ``nil``, each file name
@@ -113,7 +113,7 @@ Customization is done via the Emacs customization system. The group
    bindings to be enabled.
 
 .. option:: rg-use-transient-menu
-   :default: nil
+   :default: t
    
    Controls whether ``rg-menu`` will be used by default or not. It's also
    possible to enable the menu explicitly with
@@ -176,7 +176,7 @@ Will yield the following format:
     888# 10|match2
 
 .. option:: rg-align-position-numbers
-   :default: nil
+   :default: t
    
    Setting this to ``t`` will align line and column numbers in columns padded
    with white space.
@@ -194,14 +194,14 @@ Will yield the following format:
    Defines the length of the column number field.
 
 .. option:: rg-align-line-column-separator
-   :default: nil
+   :default: " "
    
    
    Separator string used between line and column numbers. ``nil`` means
    use default separator from *ripgrep*.
 
 .. option:: rg-align-position-content-separator
-   :default: nil
+   :default: " "
    
    Separator string used between the position numbers and matched content. ``nil`` means
    use default separator from *ripgrep*.
@@ -251,7 +251,7 @@ Results buffer
    Face used to highlight filenames in the output.
 
 .. option:: rg-file-tag-face
-   :default: font-lock-function-name-face
+   :default: rg-info-face
    
    Face used for the ``File:`` tag in grouped results output.
 
