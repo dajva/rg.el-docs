@@ -403,7 +403,7 @@ parameters <searching>`.
 .. tip:: :cmd:`rg-rerun-change-regexp` and :cmd:`rg-rerun-change-literal` are
    used for switching between regular expression and literal
    search. So for quick switching between search modes with the same
-   search string,  just pres the respective key and then ``RET``.
+   search string,  just press the respective key and then ``RET``.
 
 .. command:: rg-recompile
    :kbd: g
