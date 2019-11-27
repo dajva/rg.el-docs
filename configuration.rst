@@ -27,7 +27,7 @@ Customization is done via the Emacs customization system. The group
    order to let the OS find the binary where it's invoked.
 
 .. option:: rg-custom-type-aliases
-   :default: (("gn" . "**.gn \*.gni") ("gyp" . "**.gyp \*.gypi"))
+   :default: (("gyp" . "\*.gyp \*.gypi"))
    
    An association list that maps file type aliases to a space
    delimited string with file globs. These are combined with the
@@ -147,6 +147,16 @@ Customization is done via the Emacs customization system. The group
            (if p
        	(format "rg %s" (abbreviate-file-name (cdr p)))
              "rg"))))
+
+.. option:: rg-ignore-ripgreprc
+   :default: t
+   
+   Controls if the `ripgreprc <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>`_ file should be ignored or not. If ``nil``,
+   the config file will be used, otherwise it will be ignored. The
+   default is to ignore this file in order to avoid that conflicting
+   settings have impact on this package's behavior. Setting this to ``nil``
+   may affect core functionality of this package so make sure you know
+   what you are doing.
 
 .. _position-numbers-alignment:
 
