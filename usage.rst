@@ -240,7 +240,7 @@ to search in. The *ripgrep* binary comes with a default set
 of aliases that can be extended or overridden from this package by
 customizing :opt:`rg-custom-type-aliases`.
 
-An alias is a mapping between a name and a list of `glob patterns <https://en.wikipedia.org/wiki/Glob_%28programming%29>`_
+An alias is a mapping between a name and a list of `glob patterns <https://en.wikipedia.org/wiki/Glob_%2528programming%2529>`_
 matching the files of interest. Selecting an alias when searching
 is done with completing read of the defined aliases. It is also
 possible to enter a custom glob pattern if there is no suitable
