@@ -52,8 +52,6 @@ met. For this version these are:
 
 - **emacs** 25.1
 
-- **cl-lib** 0.5
-
 *rg* is using autoloaded symbols which means it's also possible
 to defer loading if you have autoloading setup. That usually comes
 out of the box with ``package-install``.
