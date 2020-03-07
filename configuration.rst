@@ -380,7 +380,9 @@ Configuration macros
      is allowed. Default is ``ask``.
    
    - **:format** - Specifies if ``:query`` is interpreted literally
-     (``literal``) or as a regexp (``regexp``). Default is ``regexp``.
+     (``literal``) or as a regexp (``regexp``). If it is a form, eg.
+     ``(not current-prefix-arg)``, and is non-nil the ``:query`` is interpreted
+     literally, otherwise as a regexp. Default is ``regexp``.
    
    - **:files** - Form that evaluates to a file alias or custom file
      glob. ``current`` means extract alias from current buffer file name,
