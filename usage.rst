@@ -100,7 +100,7 @@ buffer. No setup is needed.
 The *ripgrep* binary allows using a `configuration file <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>`_ to set
 default values for command line flags. This package requires
 specific command line flags to function correctly and using a
-*ripgrep* configuration may conflict with these requirements. Therefor
+*ripgrep* configuration may conflict with these requirements. Therefore
 the configuration file is ignored by default. This can be changed
 by the :opt:`rg-ignore-ripgreprc <rg-ignore-ripgreprc>` setting.
 
