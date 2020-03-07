@@ -97,6 +97,18 @@ is needed to achieve lazy loading:
 This package use `wgrep <https://github.com/mhayashi1120/Emacs-wgrep>`_ for editing capabilities in the rg results
 buffer. No setup is needed.
 
+.. rubric:: Interaction with the *ripgrep* configuration file
+
+The *ripgrep* binary allows using a `configuration file <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>`_ to set
+default values for command line flags. This package requires
+specific command line flags to function correctly and using a
+*ripgrep* configuration may conflict with these requirements. Therefor
+the configuration file is ignored by default. This can be changed
+by the :opt:`rg-ignore-ripgreprc <rg-ignore-ripgreprc>` setting.
+
+.. note:: Using the *ripgrep* configuration file may break functionality of this
+   package if you are not careful.
+
 .. _searching:
 
 Searching

@@ -155,8 +155,9 @@ Customization is done via the Emacs customization system. The group
    the config file will be used, otherwise it will be ignored. The
    default is to ignore this file in order to avoid that conflicting
    settings have impact on this package's behavior. Setting this to ``nil``
-   may affect core functionality of this package so make sure you know
-   what you are doing.
+   may affect core functionality of this package. Especially changing
+   colors can affect parsing of the output and result in a broken
+   results buffer.
 
 .. _position-numbers-alignment:
 
@@ -408,7 +409,7 @@ Configuration macros
      or a key description string) and the third item is the
      description of the command that will appear in the menu.
    
-   Example:
+   Examples:
    
    .. code-block:: elisp
    
@@ -420,6 +421,13 @@ Configuration macros
          :flags ("--hidden")
          :dir (getenv "HOME")
          :menu ("Search" "h" "Home"))
+   
+       (rg-define-search rg-emacs
+         "Search the emacs lisp source code."
+         :dir "/usr/share/emacs/25.2/lisp/"
+         :flags '("-z")
+         :files "*.{el,el.gz}"
+         :menu ("Custom" "L" "lisp"))
 
 .. _customizing_the_menu:
 
