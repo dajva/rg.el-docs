@@ -475,7 +475,7 @@ forward, the forward history is cleared when a new search is done.
    Navigate forward in history.
 
 .. tip:: The key bindings here are slightly inconvenient so invoking this
-   via :ref:`the menu <the_menu>` by pressing ``m b`` and ``m f`` is more ergonomic.
+   via :ref:`the menu <the_menu>` by pressing ``m b`` and ``m w`` is more ergonomic.
 
 .. _edit_and_apply:
 
