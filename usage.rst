@@ -355,13 +355,13 @@ Navigation works mostly as in grep/compilation buffers.
    match.
 
 .. command:: rg-next-file
-   :kbd: C-n
+   :kbd: M-N
    
    Move to next file header if the results is grouped under a file
    header (See :opt:`rg-group-result`).
 
 .. command:: rg-prev-file
-   :kbd: C-p
+   :kbd: M-P
    
    Move to previous file header if the results is grouped under a file
    header (See :opt:`rg-group-result`).
