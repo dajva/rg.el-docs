@@ -536,7 +536,7 @@ the results buffers, shows some data about the searches and make it
 possible to kill of some unused etc.
 
 .. command:: rg-list-searches
-   :kbd: l
+   :kbd: L
    
    Open the search manager.
    This is available both in result buffer and globally bound to
