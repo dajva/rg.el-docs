@@ -48,8 +48,6 @@ met. For this version these are:
 
 - **transient** 0.1.0
 
-- **s** 1.10.0
-
 - **emacs** 25.1
 
 *rg* is using autoloaded symbols which means it's also possible
