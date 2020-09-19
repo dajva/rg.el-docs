@@ -93,6 +93,21 @@ is needed to achieve lazy loading:
 This package use `wgrep <https://github.com/mhayashi1120/Emacs-wgrep>`_ for editing capabilities in the rg results
 buffer. No setup is needed.
 
+.. rubric:: Isearch integration
+
+Optional :ref:`isearch integration <isearch_search>` can be enabled to allow you to extend
+isearch to trigger ripgrep searching.
+Enable it in your configuration with:
+
+.. code-block:: elisp
+
+    (require 'rg-isearch)
+    (define-key isearch-mode-map "\M-sr" 'rg-isearch-menu)
+
+For the evil use case where isearch-mode is exited after first search hit,
+users would also want to add the binding to the ``global-map`` or
+similar.
+
 .. rubric:: Interaction with the *ripgrep* configuration file
 
 The *ripgrep* binary allows using a `configuration file <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>`_ to set
@@ -237,6 +252,21 @@ between these commands.
    search is in the :cmd:`project dir <rg-dwim-project-dir>`. With one *universal argument* :cmd:`current
    directory <rg-dwim-current-dir>` is used and with double *universal arguments* a :cmd:`file
    search <rg-dwim-current-file>` is done.
+
+.. _isearch_search:
+
+Isearch search
+~~~~~~~~~~~~~~
+
+Isearch integration is optional and need to be enabled explicitly
+in your emacs configuration. See :ref:`installation <installation>` for more info.
+
+This functionality is similar to emacs built in occur package but offers
+some additional choices for the search and provides the full
+functionality of the rg search result buffer.
+When enabled, the choosen binding can be used from isearch to
+trigger a menu for extending the isearch to to a ripgrep search in
+current file, current directory or current project.
 
 .. _file_type_aliases:
 
