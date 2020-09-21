@@ -265,7 +265,7 @@ This functionality is similar to emacs built in occur package but offers
 some additional choices for the search and provides the full
 functionality of the rg search result buffer.
 When enabled, the choosen binding can be used from isearch to
-trigger a menu for extending the isearch to to a ripgrep search in
+trigger a menu for extending the isearch to do a ripgrep search in
 current file, current directory or current project.
 
 .. _file_type_aliases:
