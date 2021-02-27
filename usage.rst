@@ -46,7 +46,7 @@ met. For this version these are:
 
 - **wgrep** 2.1.10
 
-- **transient** 0.1.0
+- **transient** 0.3.0
 
 - **emacs** 25.1
 
