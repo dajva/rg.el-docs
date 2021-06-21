@@ -1,4 +1,3 @@
-    :Author: Travis CI User
 
 .. contents::
 
