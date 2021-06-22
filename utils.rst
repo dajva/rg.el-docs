@@ -1,0 +1,4 @@
+
+.. contents::
+
+.. default-domain:: el
