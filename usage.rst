@@ -27,8 +27,9 @@ Enable default key bindings:
 
     (rg-enable-default-bindings)
 
-The above will enable the default key map under the default prefix
-key ``C-c s``.
+The above will enable the default key map
+``rg-menu`` under the default prefix key
+``C-c s``.
 
 .. rubric:: Manual
 
@@ -46,7 +47,7 @@ met. For this version these are:
 
 - **wgrep** 2.1.10
 
-- **transient** 0.1.0
+- **transient** 0.3.0
 
 - **emacs** 25.1
 
@@ -92,6 +93,21 @@ is needed to achieve lazy loading:
 
 This package use `wgrep <https://github.com/mhayashi1120/Emacs-wgrep>`_ for editing capabilities in the rg results
 buffer. No setup is needed.
+
+.. rubric:: Isearch integration
+
+Optional :ref:`isearch integration <isearch_search>` can be enabled to allow you to extend
+isearch to trigger ripgrep searching.
+Enable it in your configuration with:
+
+.. code-block:: elisp
+
+    (require 'rg-isearch)
+    (define-key isearch-mode-map "\M-sr" 'rg-isearch-menu)
+
+For the evil use case where isearch-mode is exited after first search hit,
+users would also want to add the binding to the ``global-map`` or
+similar.
 
 .. rubric:: Interaction with the *ripgrep* configuration file
 
@@ -238,6 +254,21 @@ between these commands.
    directory <rg-dwim-current-dir>` is used and with double *universal arguments* a :cmd:`file
    search <rg-dwim-current-file>` is done.
 
+.. _isearch_search:
+
+Isearch search
+~~~~~~~~~~~~~~
+
+Isearch integration is optional and need to be enabled explicitly
+in your emacs configuration. See :ref:`installation <installation>` for more info.
+
+This functionality is similar to emacs built in occur package but offers
+some additional choices for the search and provides the full
+functionality of the rg search result buffer.
+When enabled, the choosen binding can be used from isearch to
+trigger a menu for extending the isearch to do a ripgrep search in
+current file, current directory or current project.
+
 .. _file_type_aliases:
 
 File type aliases
@@ -277,10 +308,10 @@ The menu
 ~~~~~~~~
 
 The global :opt:`prefix key <rg-keymap-prefix>` may be bound to a transient
-prefix command, which in normal words mean that the key binding
-will popup a menu. This package is using the same `popup menu
-backend <https://magit.vc/manual/transient>`_ as the `magit <https://magit.vc/manual/magit>`_ package. If you are familiar with magit this
-should feels like home.
+prefix command, which means that the key binding will popup a
+menu. This package is using the same popup menu backend called
+`transient <https://magit.vc/manual/transient>`_ as the `magit <https://magit.vc/manual/magit>`_ package. If you are familiar with magit
+this should feels like home.
 
 The menu is mostly interesting when you want to give specific
 command line flags to the *ripgrep* binary. When you just want to do
@@ -309,8 +340,15 @@ not available in the original menu so it will be created.
 The menu can be triggered from the :ref:`results buffer <results_buffer>` with the ``m`` key.
 The commands in the menu differs, depending on from where it's
 triggered but the available options are the same. The menu does
-not show all options by default. The visible options can be
-controlled by the transient suffix levels documented `here <https://magit.vc/manual/transient/Enabling-and-Disabling-Suffixes.html#Enabling-and-Disabling-Suffixes>`_.
+not show all options by default.
+
+The visible options can be controlled by the transient suffix
+levels documented `here <https://magit.vc/manual/transient/Enabling-and-Disabling-Suffixes.html#Enabling-and-Disabling-Suffixes>`_.  To modify what is enabled at the default
+level 4 press ``C-x l`` to enter edit mode when the menu is
+visible. Then select the option by pressing the key sequence that
+activates the option and choose the level 4 for that option. It's
+also possible to use the transient edit mode for modifying the
+overall level of the menu to enable more options at once.
 
 .. _results_buffer:
 
