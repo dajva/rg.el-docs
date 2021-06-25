@@ -27,8 +27,9 @@ Enable default key bindings:
 
     (rg-enable-default-bindings)
 
-The above will enable the default key map under the default prefix
-key ``C-c s``.
+The above will enable the default key map
+``rg-menu`` under the default prefix key
+``C-c s``.
 
 .. rubric:: Manual
 
@@ -307,10 +308,10 @@ The menu
 ~~~~~~~~
 
 The global :opt:`prefix key <rg-keymap-prefix>` may be bound to a transient
-prefix command, which in normal words mean that the key binding
-will popup a menu. This package is using the same `popup menu
-backend <https://magit.vc/manual/transient>`_ as the `magit <https://magit.vc/manual/magit>`_ package. If you are familiar with magit this
-should feels like home.
+prefix command, which means that the key binding will popup a
+menu. This package is using the same popup menu backend called
+`transient <https://magit.vc/manual/transient>`_ as the `magit <https://magit.vc/manual/magit>`_ package. If you are familiar with magit
+this should feels like home.
 
 The menu is mostly interesting when you want to give specific
 command line flags to the *ripgrep* binary. When you just want to do
@@ -339,8 +340,15 @@ not available in the original menu so it will be created.
 The menu can be triggered from the :ref:`results buffer <results_buffer>` with the ``m`` key.
 The commands in the menu differs, depending on from where it's
 triggered but the available options are the same. The menu does
-not show all options by default. The visible options can be
-controlled by the transient suffix levels documented `here <https://magit.vc/manual/transient/Enabling-and-Disabling-Suffixes.html#Enabling-and-Disabling-Suffixes>`_.
+not show all options by default.
+
+The visible options can be controlled by the transient suffix
+levels documented `here <https://magit.vc/manual/transient/Enabling-and-Disabling-Suffixes.html#Enabling-and-Disabling-Suffixes>`_.  To modify what is enabled at the default
+level 4 press ``C-x l`` to enter edit mode when the menu is
+visible. Then select the option by pressing the key sequence that
+activates the option and choose the level 4 for that option. It's
+also possible to use the transient edit mode for modifying the
+overall level of the menu to enable more options at once.
 
 .. _results_buffer:
 
