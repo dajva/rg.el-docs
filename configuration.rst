@@ -434,4 +434,48 @@ Configuration macros
 Customizing the menu
 --------------------
 
-Please refer to the `transient <https://magit.vc/manual/transient/Modifying-Existing-Transients.html#Modifying-Existing-Transients>`_ documentation for customizing the menu.
+The menu can be modified from the emacs configuration file.
+
+To add a new **switch** before the option triggered by ``-n`` at suffix
+level 3:
+
+.. code-block:: elisp
+
+    (transient-insert-suffix 'rg-menu "-n" '(3 "-o" "Only print matches" "--only-matching"))
+
+To add a new **option** before the option triggered by ``-g`` at suffix
+level 4:
+
+.. code-block:: elisp
+
+    (transient-insert-suffix 'rg-menu "-g" '(4 "-f" "Pattern file" "--file="))
+
+The ``=`` in ``--file=`` triggers argument input for the flag.
+
+To remove an item from the menu specify the trigger key in the
+transient remove command.
+For example, to remove the ``Search hidden files`` switch use the following:
+
+.. code-block:: elisp
+
+    (transient-remove-suffix 'rg-menu "-h")
+
+Please refer to the `transient <https://magit.vc/manual/transient/Modifying-Existing-Transients.html#Modifying-Existing-Transients>`_ documentation for details on customizing the menu.
+
+This package also adds a convenience function for appending new
+**commands** to the menu in the groups at the bottom.
+
+.. function:: (rg-menu-transient-insert group key description command)
+   
+   This inserts a new command under ``group`` if it exists, otherwise a
+   new group is created. ``key``, ``description`` and ``command`` is as for
+   the ``transient-insert-suffix`` function.
+   
+   For example to insert a new command under ``Search`` group:
+   
+   .. code-block:: elisp
+   
+       (rg-menu-transient-insert "Search" "m" "My search" 'my-search-command)
+   
+   It's usually better to use the ``:menu`` key of the :func:`rg-define-search`
+   macro to define a search function and adding it to the menu in one go.
