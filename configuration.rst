@@ -429,6 +429,33 @@ Configuration macros
          :files "*.{el,el.gz}"
          :menu ("Custom" "L" "lisp"))
 
+Use with evil-mode
+------------------
+
+Some key bindings clash with *evil-mode*. Recommendation is to use
+evil *motion* state for the results buffer and then switch to
+evil *normal* mode when editing in *wgrep-mode*. Some adjustments
+need to be done to avoid the clashes though.
+
+This is a start of a configuration. This let *rg-mode*'s key bindings
+override the motion state map bindings based on that these motion
+keys are not important in an *rg* results buffer. 
+Adjust this to your preferred use case:
+
+.. code-block:: elisp
+
+    (with-eval-after-load 'rg
+      (advice-add 'wgrep-change-to-wgrep-mode :after
+    	      #'evil-normal-state)
+      (advice-add 'wgrep-to-original-mode :after
+    	      #'evil-motion-state)
+      (defvar rg-mode-map)
+      (add-to-list 'evil-motion-state-modes 'rg-mode)
+      (evil-add-hjkl-bindings rg-mode-map 'motion
+        "e" #'wgrep-change-to-wgrep-mode
+        "g" #'rg-recompile
+        "t" #'rg-rerun-change-literal))
+
 .. _customizing_the_menu:
 
 Customizing the menu
