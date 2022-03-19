@@ -25,6 +25,17 @@ Customization is done via the Emacs customization system. The group
    ``executable-find`` to locate the command. If you want to use this
    package with tramp it might be better to set it to just "rg" in
    order to let the OS find the binary where it's invoked.
+   From Emacs 27.1, the tramp use case is by default handled
+   automatically. See :opt:`rg-executable-per-connection` for details.
+
+.. option:: rg-executable-per-connection
+   :default: t
+   
+   This setting only has effect in Emacs 27.1 or later.
+   Handle the :opt:`rg-executable` automatically for different hosts if used
+   with tramp. ``executable-find`` for "rg" binary will be invoked on
+   remote hosts to determine the path to ripgrep. The result is stored
+   per connection.
 
 .. option:: rg-custom-type-aliases
    :default: (("gyp" . "\*.gyp \*.gypi"))
@@ -53,7 +64,7 @@ Customization is done via the Emacs customization system. The group
             (cons "ui" "*.js *.hbs *.json"))))
 
 .. option:: rg-default-alias-fallback
-   :default: "all"
+   :default: "everything"
    
    This setting controls the default alias used when no alias can be
    recognized for the current buffer. ``all`` or ``everything`` are
@@ -429,9 +440,80 @@ Configuration macros
          :files "*.{el,el.gz}"
          :menu ("Custom" "L" "lisp"))
 
+Use with evil-mode
+------------------
+
+Some key bindings clash with *evil-mode*. Recommendation is to use
+evil *motion* state for the results buffer and then switch to
+evil *normal* mode when editing in *wgrep-mode*. Some adjustments
+need to be done to avoid the clashes though.
+
+This is a start of a configuration. This let *rg-mode*'s key bindings
+override the motion state map bindings based on that these motion
+keys are not important in an *rg* results buffer. 
+Adjust this to your preferred use case:
+
+.. code-block:: elisp
+
+    (with-eval-after-load 'rg
+      (advice-add 'wgrep-change-to-wgrep-mode :after
+    	      #'evil-normal-state)
+      (advice-add 'wgrep-to-original-mode :after
+    	      #'evil-motion-state)
+      (defvar rg-mode-map)
+      (add-to-list 'evil-motion-state-modes 'rg-mode)
+      (evil-add-hjkl-bindings rg-mode-map 'motion
+        "e" #'wgrep-change-to-wgrep-mode
+        "g" #'rg-recompile
+        "t" #'rg-rerun-change-literal))
+
 .. _customizing_the_menu:
 
 Customizing the menu
 --------------------
 
-Please refer to the `transient <https://magit.vc/manual/transient/Modifying-Existing-Transients.html#Modifying-Existing-Transients>`_ documentation for customizing the menu.
+The menu can be modified from the emacs configuration file.
+
+To add a new **switch** before the option triggered by ``-n`` at suffix
+level 3:
+
+.. code-block:: elisp
+
+    (transient-insert-suffix 'rg-menu "-n" '(3 "-o" "Only print matches" "--only-matching"))
+
+To add a new **option** before the option triggered by ``-g`` at suffix
+level 4:
+
+.. code-block:: elisp
+
+    (transient-insert-suffix 'rg-menu "-g" '(4 "-f" "Pattern file" "--file="))
+
+The ``=`` in ``--file=`` triggers argument input for the flag.
+
+To remove an item from the menu specify the trigger key in the
+transient remove command.
+For example, to remove the ``Search hidden files`` switch use the following:
+
+.. code-block:: elisp
+
+    (transient-remove-suffix 'rg-menu "-h")
+
+Please refer to the `transient <https://magit.vc/manual/transient/Modifying-Existing-Transients.html#Modifying-Existing-Transients>`_ documentation for details on customizing the menu.
+
+This package also adds a convenience function for appending new
+**commands** to the menu in the groups at the bottom.
+
+.. function:: (rg-menu-transient-insert group key description command)
+   
+   This inserts a new command under ``group`` if it exists, otherwise a
+   new group is created. ``key``, ``description`` and ``command`` is as for
+   the ``transient-insert-suffix`` function.
+   
+   For example to insert a new command under ``Search`` group:
+   
+   .. code-block:: elisp
+   
+       (rg-menu-transient-insert "Search" "m" "My search" 'my-search-command)
+   
+   It's usually better to use the ``:menu`` key of the :func:`rg-define-search`
+   macro to define a search function and adding it to the menu in one go.

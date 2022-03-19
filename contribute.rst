@@ -84,10 +84,10 @@ generator. Sphinx is used to export the output from org mode to info
 and HTML documentation. The resulting .rst files are used for the online
 documentation on `https://readthedocs.io <https://readthedocs.io>`_.
 
-The ReadTheDocs documentation is generated after committing to the
-main repository but the info manual needs to be created locally and
-submitted as part of a documentation patch. It's advisable to build
-both locally and verify the output to make sure the changes looks OK.
+The end user documentation is generated after committing to the
+main repository. It's advisable to build
+both html and info documentation locally and verify the output to
+make sure the changes looks as expected.
 
 .. _documentation_setup:
 
@@ -98,7 +98,13 @@ Setup
 
   .. code-block:: bash
 
-      apt-get install python3-sphinx
+      sudo apt install python3-sphinx python3-sphinx-rtd-theme
+
+- Install makeinfo
+
+  .. code-block:: bash
+
+      sudo apt install texinfo
 
 .. _documentation_building:
 
@@ -126,18 +132,3 @@ Building
       C-u M-x info [RET]
 
   Then select the ``docs/rst/_build/info/rgel.info`` file.
-
-Create a patch
-~~~~~~~~~~~~~~
-
-- Edit the org files in ``docs`` directory.
-
-- When everything looks good in both HTML and info.
-
-  .. code-block:: bash
-
-      make info
-
-- Commit both the changed org files and info file.
-
-- Push and create PR.
