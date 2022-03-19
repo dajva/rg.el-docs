@@ -25,6 +25,17 @@ Customization is done via the Emacs customization system. The group
    ``executable-find`` to locate the command. If you want to use this
    package with tramp it might be better to set it to just "rg" in
    order to let the OS find the binary where it's invoked.
+   From Emacs 27.1, the tramp use case is by default handled
+   automatically. See :opt:`rg-executable-per-connection` for details.
+
+.. option:: rg-executable-per-connection
+   :default: t
+   
+   This setting only has effect in Emacs 27.1 or later.
+   Handle the :opt:`rg-executable` automatically for different hosts if used
+   with tramp. ``executable-find`` for "rg" binary will be invoked on
+   remote hosts to determine the path to ripgrep. The result is stored
+   per connection.
 
 .. option:: rg-custom-type-aliases
    :default: (("gyp" . "\*.gyp \*.gypi"))
@@ -53,7 +64,7 @@ Customization is done via the Emacs customization system. The group
             (cons "ui" "*.js *.hbs *.json"))))
 
 .. option:: rg-default-alias-fallback
-   :default: "all"
+   :default: "everything"
    
    This setting controls the default alias used when no alias can be
    recognized for the current buffer. ``all`` or ``everything`` are
