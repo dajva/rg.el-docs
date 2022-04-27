@@ -417,6 +417,9 @@ Navigation works mostly as in grep/compilation buffers.
    
    Visit match in file.
 
+If :opt:`rg-group-result <rg-group-result>` is enabled, the `Imenu <https://www.gnu.org/software/emacs/manual/html_node/emacs/Imenu.html>`_ facility is configured to
+jump across files.
+
 Refine search
 ~~~~~~~~~~~~~
 
