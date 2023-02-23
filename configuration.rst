@@ -38,7 +38,7 @@ Customization is done via the Emacs customization system. The group
    per connection.
 
 .. option:: rg-custom-type-aliases
-   :default: (("gyp" . "\*.gyp \*.gypi"))
+   :default: nil
    
    An association list that maps file type aliases to a space
    delimited string with file globs. These are combined with the
@@ -62,6 +62,21 @@ Customization is done via the Emacs customization system. The group
         (lambda ()
           (when (in-frontend-app)
             (cons "ui" "*.js *.hbs *.json"))))
+
+.. option:: rg-prioritized-type-aliases
+   :default: nil
+   
+   A list of aliases that are prioritized among ripgrep's builtin
+   aliases when selecting the alias based on the buffer file name. This
+   list contains only the alias names and the order between the items
+   does not matter.
+   
+   Example:
+   
+   .. code-block:: elisp
+   
+       (setq rg-custom-type-aliases
+         '("cpp" "puppet"))
 
 .. option:: rg-default-alias-fallback
    :default: "everything"
