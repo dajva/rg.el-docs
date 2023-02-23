@@ -593,7 +593,7 @@ possible to kill of some unused etc.
    will be kept. So be careful when killing saved searches to avoid
    losing important search results.
 
-.. _search_management:
+.. _multi_line_search:
 
 Multi line search
 -----------------
