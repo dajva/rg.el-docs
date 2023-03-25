@@ -359,6 +359,31 @@ Configuration functions
    as key bindings changed and to bring back the old defaults call this
    function in your init file.
 
+.. _hooks:
+
+Hooks
+-----
+
+.. option:: rg-finish-functions
+   :default: nil
+   
+   Functions to call when a ripgrep search is finished.
+   
+   Each function is called with two arguments: the compilation buffer,
+   and a string describing how the process finished.
+
+.. option:: rg-filter-hook
+   :default: nil
+   
+   Hook run after new content has been inserted in in the rg buffer.
+   This hook is called every time the rg buffer has been updated with
+   new content and filtered internally by the package.
+
+.. option:: rg-mode-hook
+   :default: (wgrep-rg-setup)
+   
+   Hook run after entering rg mode.
+
 .. _configuration_macros:
 
 Configuration macros
@@ -465,7 +490,7 @@ need to be done to avoid the clashes though.
 
 This is a start of a configuration. This let *rg-mode*'s key bindings
 override the motion state map bindings based on that these motion
-keys are not important in an *rg* results buffer. 
+keys are not important in an *rg* results buffer.
 Adjust this to your preferred use case:
 
 .. code-block:: elisp
