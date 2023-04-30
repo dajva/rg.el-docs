@@ -121,6 +121,16 @@ by the :opt:`rg-ignore-ripgreprc <rg-ignore-ripgreprc>` setting.
 .. note:: Using the *ripgrep* configuration file may break functionality of this
    package if you are not careful.
 
+.. rubric:: Interaction with xterm-color
+
+This package is not written to be used with custom output colors
+provided by external packages like *xterm-color*. It relies on the
+color escape sequences so stripping these will break in unexpected
+ways.
+If you are using such packages, the advice is to hook such
+functionality into ``compilation-filter-hook`` instead of advising
+``compilation-filter``.
+
 .. _searching:
 
 Searching
