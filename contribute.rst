@@ -28,14 +28,57 @@ better to submit something simple that shows the main direction of
 the new code in order to discuss the best way to proceed and what
 additions are needed.
 
+.. _docker:
+
+Docker
+------
+
+Docker can be used to run the tests or generate documentation
+locally without installing dependencies on the host and to test with
+different emacs versions.
+
+To use docker, just set the ``USE_DOCKER`` variable when
+running the tests.
+The ``EMACS_VERSION`` variable can be used to select emacs
+version. Note that dash ('-') is used instead of points ('.') in the
+version numbering. So emacs 28.2 is specified as ``28-2``.
+Emacs are installed from `https://github.com/purcell/nix-emacs-ci <https://github.com/purcell/nix-emacs-ci>`_ so
+only emacs versions supported in that repository will work.
+
+- Build docker container:
+
+  .. code-block:: bash
+
+      # Don't use the USE_DOCKER variable here
+      make EMACS_VERSION=26-2 docker-build
+
+- To run all the tests in docker image:
+
+  .. code-block:: bash
+
+      make USE_DOCKER=true test
+
+- Use a specific emacs version:
+
+  .. code-block:: bash
+
+      make USE_DOCKER=true EMACS_VERSION=snapshot
+
+- Generate html documentation:
+
+  .. code-block:: bash
+
+      make USE_DOCKER=true html
+
 .. _tests:
 
 Tests
 -----
 
 `Cask <https://cask.readthedocs.io/>`_ is used for testing. The tests are written using the Emacs
-built in ERT framework and executed with `ert runner <https://github.com/rejeep/ert-runner.el>`_. There are also
-compilation tests, style check, package verification etc.
+built in ERT framework and follows the conventions of `ert runner <https://github.com/rejeep/ert-runner.el>`_
+although ert\_runner is no longer used. There are also compilation
+tests, style check, package verification etc.
 
 .. _tests_setup:
 
