@@ -172,7 +172,7 @@ Customization is done via the Emacs customization system. The group
          (let ((p (project-current)))
            (if p
        	(format "rg %s" (abbreviate-file-name (cdr p)))
-             "rg"))))
+             "rg")))
 
 .. option:: rg-ignore-ripgreprc
    :default: t
