@@ -50,7 +50,7 @@ only emacs versions supported in that repository will work.
   .. code-block:: bash
 
       # Don't use the USE_DOCKER variable here
-      make EMACS_VERSION=26-2 docker-build
+      make EMACS_VERSION=30-2 docker-build
 
 - To run all the tests in docker image:
 

@@ -11,7 +11,7 @@ Installation
 ------------
 
 This version of *rg* is supported on GNU Emacs
-26.1 or later on Linux systems. It
+28.1 or later on Linux systems. It
 might work on older Emacsen and on other systems but such
 configurations are not tested. Patches for other OS:es are welcome.
 
@@ -49,7 +49,7 @@ met. For this version these are:
 
 - **transient** 0.9.2
 
-- **emacs** 26.1
+- **emacs** 28.1
 
 *rg* is using autoloaded symbols which means it's also possible
 to defer loading if you have autoloading setup. That usually comes
