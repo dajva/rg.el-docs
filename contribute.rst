@@ -127,10 +127,9 @@ generator. Sphinx is used to export the output from org mode to info
 and HTML documentation. The resulting .rst files are used for the online
 documentation on `https://readthedocs.io <https://readthedocs.io>`_.
 
-The end user documentation is generated after committing to the
-main repository. It's advisable to build
-both html and info documentation locally and verify the output to
-make sure the changes looks as expected.
+The end user documentation is generated after committing to the main
+repository. It's advisable to build both html and info documentation locally
+and verify the output to make sure the changes looks as expected.
 
 .. _documentation_setup:
 
