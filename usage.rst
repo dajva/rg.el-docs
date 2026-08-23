@@ -11,7 +11,7 @@ Installation
 ------------
 
 This version of *rg* is supported on GNU Emacs
-25.1 or later on Linux systems. It
+28.1 or later on Linux systems. It
 might work on older Emacsen and on other systems but such
 configurations are not tested. Patches for other OS:es are welcome.
 
@@ -47,9 +47,9 @@ met. For this version these are:
 
 - **wgrep** 2.1.10
 
-- **transient** 0.3.0
+- **transient** 0.9.2
 
-- **emacs** 25.1
+- **emacs** 28.1
 
 *rg* is using autoloaded symbols which means it's also possible
 to defer loading if you have autoloading setup. That usually comes
@@ -120,6 +120,16 @@ by the :opt:`rg-ignore-ripgreprc <rg-ignore-ripgreprc>` setting.
 
 .. note:: Using the *ripgrep* configuration file may break functionality of this
    package if you are not careful.
+
+.. rubric:: Interaction with xterm-color
+
+This package is not written to be used with custom output colors
+provided by external packages like *xterm-color*. It relies on the
+color escape sequences so stripping these will break in unexpected
+ways.
+If you are using such packages, the advice is to hook such
+functionality into ``compilation-filter-hook`` instead of advising
+``compilation-filter``.
 
 .. _searching:
 
@@ -417,6 +427,9 @@ Navigation works mostly as in grep/compilation buffers.
    
    Visit match in file.
 
+If :opt:`rg-group-result <rg-group-result>` is enabled, the `Imenu <https://www.gnu.org/software/emacs/manual/html_node/emacs/Imenu.html>`_ facility is configured to
+jump across files.
+
 Refine search
 ~~~~~~~~~~~~~
 
@@ -590,7 +603,7 @@ possible to kill of some unused etc.
    will be kept. So be careful when killing saved searches to avoid
    losing important search results.
 
-.. _search_management:
+.. _multi_line_search:
 
 Multi line search
 -----------------

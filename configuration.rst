@@ -38,7 +38,7 @@ Customization is done via the Emacs customization system. The group
    per connection.
 
 .. option:: rg-custom-type-aliases
-   :default: (("gyp" . "\*.gyp \*.gypi"))
+   :default: nil
    
    An association list that maps file type aliases to a space
    delimited string with file globs. These are combined with the
@@ -62,6 +62,21 @@ Customization is done via the Emacs customization system. The group
         (lambda ()
           (when (in-frontend-app)
             (cons "ui" "*.js *.hbs *.json"))))
+
+.. option:: rg-prioritized-type-aliases
+   :default: nil
+   
+   A list of aliases that are prioritized among ripgrep's builtin
+   aliases when selecting the alias based on the buffer file name. This
+   list contains only the alias names and the order between the items
+   does not matter.
+   
+   Example:
+   
+   .. code-block:: elisp
+   
+       (setq rg-custom-type-aliases
+         '("cpp" "puppet"))
 
 .. option:: rg-default-alias-fallback
    :default: "everything"
@@ -157,7 +172,7 @@ Customization is done via the Emacs customization system. The group
          (let ((p (project-current)))
            (if p
        	(format "rg %s" (abbreviate-file-name (cdr p)))
-             "rg"))))
+             "rg")))
 
 .. option:: rg-ignore-ripgreprc
    :default: t
@@ -344,6 +359,31 @@ Configuration functions
    as key bindings changed and to bring back the old defaults call this
    function in your init file.
 
+.. _hooks:
+
+Hooks
+-----
+
+.. option:: rg-finish-functions
+   :default: nil
+   
+   Functions to call when a ripgrep search is finished.
+   
+   Each function is called with two arguments: the compilation buffer,
+   and a string describing how the process finished.
+
+.. option:: rg-filter-hook
+   :default: nil
+   
+   Hook run after new content has been inserted in in the rg buffer.
+   This hook is called every time the rg buffer has been updated with
+   new content and filtered internally by the package.
+
+.. option:: rg-mode-hook
+   :default: (wgrep-rg-setup)
+   
+   Hook run after entering rg mode.
+
 .. _configuration_macros:
 
 Configuration macros
@@ -414,7 +454,7 @@ Configuration macros
    
    - **:menu** - Bind the command into ``rg-menu``.  Must be a list with three
      items in it.  The first item is the description of the
-     group in witch the new command will appear.  If the group
+     group in which the new command will appear.  If the group
      does not exist a new will be created.  The second item is
      the key binding for this new command (ether a key vector
      or a key description string) and the third item is the
@@ -450,7 +490,7 @@ need to be done to avoid the clashes though.
 
 This is a start of a configuration. This let *rg-mode*'s key bindings
 override the motion state map bindings based on that these motion
-keys are not important in an *rg* results buffer. 
+keys are not important in an *rg* results buffer.
 Adjust this to your preferred use case:
 
 .. code-block:: elisp
